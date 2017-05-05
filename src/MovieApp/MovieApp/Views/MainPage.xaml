@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors" 
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MovieApp.Views.MainPage"
+             Title=" Upcoming Movies ">
+
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+            <DataTemplate x:Key="TopSeriesTemplate">
+                <ViewCell>
+                    <ViewCell.View>
+                        <Grid Margin="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding PosterUrl}" Grid.Column="0" x:Name="TopImage" /> 
+                            
+                            <StackLayout Grid.Column="1" Margin="10, 0, 0, 0" VerticalOptions="Start">
+                                <Label Text="{Binding OriginalTitle}" FontSize="16" TextColor="#58666e" FontAttributes="Bold" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Release Date: " FontSize="10" TextColor="#58666e" />
+                                    <Label Text="{Binding ReleaseDate}" FontSize="10" TextColor="#98a6ad" Margin="5, 0, 0, 0" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Gender: " FontSize="10" TextColor="#58666e" />
+                                    <Label Text="{Binding AllGenres}" FontSize="10" TextColor="#98a6ad" Margin="5, 0, 0, 0" />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="Overview: " FontSize="10" TextColor="#58666e" />
+                                    <Label Text="{Binding Overview}" FontSize="10" TextColor="#98a6ad" Margin="5, 0, 0, 0" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <ListView ItemTemplate="{StaticResource TopSeriesTemplate}" ItemsSource="{Binding Path=TopSeries}" RowHeight="200">
+    </ListView>
+
+</ContentPage>
